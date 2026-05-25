@@ -10,6 +10,8 @@ import { LiveOverlay, type LiveOverlayHandle, type DetectionState } from "@/comp
 import { LiveAR } from "@/components/tryon/LiveAR";
 import { HeroResultPanel } from "@/components/tryon/HeroResultPanel";
 import { TryOnLightbox } from "@/components/tryon/TryOnLightbox";
+import { IconLiveAR, IconPhotoreal, IconRefresh } from "@/components/icons";
+import { Button, SegmentButton, SegmentGroup, SegmentTab, SegmentTabList } from "@/components/ui";
 import {
   generateTryOn,
   TryOnApiError,
@@ -250,41 +252,39 @@ export default function TryOnPage() {
 
             <div className="ts-studio-flow">
               <div className="ds-wizard-card ds-wizard-card--tryon">
-                <div
+                <SegmentTabList
                   className="ts-tabs"
                   role="tablist"
                   aria-label="Try-on mode"
                 >
-                  <button
-                    type="button"
+                  <SegmentTab
                     role="tab"
                     aria-selected={tab === "photo"}
-                    className={`ts-tab ${tab === "photo" ? "ts-tab--on" : ""}`}
+                    active={tab === "photo"}
+                    className="ts-tab"
+                    icon={<IconPhotoreal size={20} />}
+                    label="Photoreal try-on"
+                    meta="FLUX Kontext, ~15 s"
                     onClick={() => setTab("photo")}
                     disabled={generating}
-                  >
-                    <span className="ts-tab-label">Photoreal try-on</span>
-                    <span className="ts-tab-meta">FLUX Kontext, ~15 s</span>
-                  </button>
-                  <button
-                    type="button"
+                  />
+                  <SegmentTab
                     role="tab"
                     aria-selected={tab === "ar"}
-                    className={`ts-tab ${tab === "ar" ? "ts-tab--on" : ""}`}
+                    active={tab === "ar"}
+                    className="ts-tab"
+                    icon={<IconLiveAR size={20} />}
+                    label="Live AR"
+                    meta={ring.meshUrl ? "Webcam, real-time, free" : "Mesh not in this pack"}
                     onClick={() => setTab("ar")}
                     disabled={generating || !ring.meshUrl}
                     title={
                       ring.meshUrl
                         ? undefined
-                        : "Live AR needs a 3D mesh — generate the Design pack with the mesh stage on."
+                        : "Live AR needs a 3D mesh. Generate the Design pack with the mesh stage on."
                     }
-                  >
-                    <span className="ts-tab-label">Live AR</span>
-                    <span className="ts-tab-meta">
-                      {ring.meshUrl ? "Webcam, real-time, free" : "Mesh not in this pack"}
-                    </span>
-                  </button>
-                </div>
+                  />
+                </SegmentTabList>
 
                 {tab === "ar" && ring.meshUrl ? (
                   <section className="ts-workspace-stage" aria-labelledby="ts-ar-title">
@@ -334,12 +334,18 @@ export default function TryOnPage() {
                     <div className="ts-canvas-toolbar">
                       <DetectionBadge state={detection} />
                       <div className="ts-canvas-actions">
-                        <div className="ts-mode-switch" role="tablist" aria-label="Placement mode">
-                          <button
-                            type="button"
+                        <SegmentGroup
+                          className="ts-mode-switch"
+                          role="tablist"
+                          aria-label="Placement mode"
+                          size="sm"
+                        >
+                          <SegmentButton
                             role="tab"
                             aria-selected={mode === "auto"}
-                            className={`ts-mode-btn ${mode === "auto" ? "ts-mode-btn--on" : ""}`}
+                            active={mode === "auto"}
+                            size="sm"
+                            className="ts-mode-btn"
                             onClick={() => {
                               setMode("auto");
                               onResetAdjust();
@@ -347,27 +353,30 @@ export default function TryOnPage() {
                             disabled={generating}
                           >
                             Auto
-                          </button>
-                          <button
-                            type="button"
+                          </SegmentButton>
+                          <SegmentButton
                             role="tab"
                             aria-selected={mode === "manual"}
-                            className={`ts-mode-btn ${mode === "manual" ? "ts-mode-btn--on" : ""}`}
+                            active={mode === "manual"}
+                            size="sm"
+                            className="ts-mode-btn"
                             onClick={() => setMode("manual")}
                             disabled={generating}
                           >
                             Adjust
-                          </button>
-                        </div>
-                        <button
-                          type="button"
-                          className="btn-ghost ts-toolbar-btn"
+                          </SegmentButton>
+                        </SegmentGroup>
+                        <Button
+                          variant="ghost"
+                          className="ts-toolbar-btn"
                           onClick={onRedetect}
                           disabled={generating}
                           title="Run hand detection again"
+                          icon={<IconRefresh size={16} />}
+                          iconPosition="start"
                         >
                           Re-detect
-                        </button>
+                        </Button>
                       </div>
                     </div>
 

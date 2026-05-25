@@ -1,5 +1,7 @@
 "use client";
 
+import { IconWhatsNext } from "@/components/icons";
+
 const WHATS_NEXT: Record<number, { title: string; body: string }> = {
   1: {
     title: "What's next?",
@@ -22,7 +24,7 @@ export function DesignWhatsNextSidebar({ step }: { step: number }) {
     >
       <div className={`ds-sidebar-card ${isStep1 ? "ds-sidebar-card--step1" : ""}`}>
         <header className={`ds-sidebar-head ${isStep1 ? "ds-sidebar-head--step1" : ""}`}>
-          <SidebarHeadingIcon className="ds-sidebar-icon" />
+          <IconWhatsNext className="ds-sidebar-icon" size={20} />
           <h2
             id="ds-sidebar-heading"
             className={`ds-sidebar-title ${isStep1 ? "ds-sidebar-title--serif" : ""}`}
@@ -63,16 +65,3 @@ export function DesignWhatsNextSidebar({ step }: { step: number }) {
   );
 }
 
-function SidebarHeadingIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 20 20" className={className} fill="none" aria-hidden>
-      <path
-        d="M5 10h9m0 0l-3.5-3.5M14 10l-3.5 3.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}

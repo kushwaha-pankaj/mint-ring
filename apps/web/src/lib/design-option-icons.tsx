@@ -33,8 +33,8 @@ import {
   Pencil,
   Plus,
   RectangleHorizontal,
+  Layers,
   RotateCw,
-  Sparkles,
   Square,
   Sun,
   Squircle,
@@ -77,7 +77,7 @@ export function lucideTile(
 /** Setting style (head + basket). */
 export const SETTING_STYLE_ICONS: Record<string, DesignTileIcon> = {
   Solitaire: lucideTile(Gem),
-  Halo: lucideTile(Sparkles),
+  Halo: lucideTile(Eclipse),
   Bezel: lucideTile(CircleDot),
   Pavé: lucideTile(GripHorizontal),
   "Three stone": IconThreeStone,
@@ -155,7 +155,7 @@ export function bandProfileIcon(value: string): DesignTileIcon {
 }
 
 export function extraDetailIcon(value: string): DesignTileIcon {
-  return EXTRA_DETAIL_ICONS[value] ?? lucideTile(Sparkles);
+  return EXTRA_DETAIL_ICONS[value] ?? lucideTile(Gem);
 }
 
 export function moodIcon(value: string): DesignTileIcon {
@@ -167,7 +167,7 @@ export const RING_TYPE_ICONS: Record<string, DesignTileIcon> = {
   engagement: lucideTile(Heart),
   "wedding-band": lucideTile(Circle),
   eternity: lucideTile(Infinity),
-  halo: lucideTile(Sparkles),
+  halo: lucideTile(Eclipse),
   solitaire: lucideTile(Gem),
   cluster: lucideTile(LayoutGrid),
   "three-stone": IconThreeStone,
@@ -203,7 +203,7 @@ export const REVIEW_ATTR_ICONS: Record<ReviewAttrKind, DesignTileIcon> = {
   ring: lucideTile(Gem, { size: 18, strokeWidth: 1.3 }),
   metal: lucideTile(CircleDot, { size: 18, strokeWidth: 1.3 }),
   stone: lucideTile(Diamond, { size: 18, strokeWidth: 1.3 }),
-  setting: lucideTile(Sparkles, { size: 18, strokeWidth: 1.3 }),
+  setting: lucideTile(Layers, { size: 18, strokeWidth: 1.3 }),
   band: lucideTile(Circle, { size: 18, strokeWidth: 1.3 }),
   finish: lucideTile(Circle, { size: 18, strokeWidth: 1.3 }),
   extra: lucideTile(Plus, { size: 18, strokeWidth: 1.3 }),

@@ -5,6 +5,13 @@ import { DesignStep1Form } from "./DesignStep1Form";
 import { DesignStep2Form } from "./DesignStep2Form";
 import { DesignStep3Form } from "./DesignStep3Form";
 import { DesignStep4Form } from "./DesignStep4Form";
+import {
+  IconChevronLeft,
+  IconChevronRight,
+  IconClock,
+  IconWand,
+} from "@/components/icons";
+import { Button } from "@/components/ui";
 const STEP_META: Record<
   number,
   { title: string; hint: string; nextLabel: string; backLabel?: string }
@@ -131,46 +138,47 @@ export function DesignWizardForm({
             .join(" ")}
         >
           {step > 1 && (
-            <button
-              type="button"
-              className="btn-ghost ds-wizard-back ds-wizard-back--outline"
+            <Button
+              variant="ghost"
+              className="ds-wizard-back ds-wizard-back--outline"
               onClick={onBack}
               disabled={generating}
+              icon={<IconChevronLeft size={18} className="ds-chevron-icon ds-chevron-icon--left" />}
+              iconPosition="start"
             >
-              <ChevronLeftIcon />
               {meta.backLabel ?? "Back"}
-            </button>
+            </Button>
           )}
 
           {step === 4 && (
             <div className="ds-step4-generation-estimate" aria-label="Estimated generation time">
-              <ClockIcon />
+              <IconClock size={18} className="ds-clock-icon" />
               <span>Estimated generation time</span>
               <strong>45-90 seconds</strong>
             </div>
           )}
 
           {step < 4 ? (
-            <button
-              type="button"
-              className="btn-primary ds-wizard-continue"
+            <Button
+              variant="primary"
+              className="ds-wizard-continue"
               disabled={!canNext}
               onClick={onNext}
+              icon={<IconChevronRight size={18} className="ds-chevron-icon" />}
             >
               {meta.nextLabel}
-              <ChevronIcon />
-            </button>
+            </Button>
           ) : (
             <div className="ds-step4-generate-wrap">
-              <button
-                type="button"
-                className="btn-primary ds-wizard-continue"
+              <Button
+                variant="primary"
+                className="ds-wizard-continue"
                 disabled={!canGenerate}
                 onClick={onGenerate}
+                icon={<IconWand size={18} className="ds-generate-icon" />}
               >
                 {generating ? "Generating your design..." : meta.nextLabel}
-                <GenerateIcon />
-              </button>
+              </Button>
               <p>You have 8 generations left today.</p>
             </div>
           )}
@@ -180,53 +188,3 @@ export function DesignWizardForm({
   );
 }
 
-function ChevronLeftIcon() {
-  return (
-    <svg viewBox="0 0 20 20" className="ds-chevron-icon ds-chevron-icon--left" fill="none" aria-hidden>
-      <path
-        d="M12 5l-5 5 5 5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ChevronIcon() {
-  return (
-    <svg viewBox="0 0 20 20" className="ds-chevron-icon" fill="none" aria-hidden>
-      <path
-        d="M8 5l5 5-5 5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ClockIcon() {
-  return (
-    <svg viewBox="0 0 20 20" className="ds-clock-icon" fill="none" aria-hidden>
-      <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.2" />
-      <path d="M10 6v4l2.5 2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function GenerateIcon() {
-  return (
-    <svg viewBox="0 0 20 20" className="ds-generate-icon" fill="none" aria-hidden>
-      <path
-        d="M4 10h10m0 0l-4-4m4 4l-4 4"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}

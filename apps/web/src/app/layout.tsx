@@ -11,8 +11,13 @@ const interTight = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  title: "Hockley Mint | AI Ring Studio",
-  description: "Identify, analyse, visualise, and try on Hockley Mint rings.",
+  title: {
+    default: "mint-ring · Hockley Mint Studio",
+    template: "%s · mint-ring",
+  },
+  description:
+    "Identify, analyse, design, and try on Hockley Mint rings. BCU KTP demo studio.",
+  applicationName: "mint-ring",
 };
 
 export default function RootLayout({

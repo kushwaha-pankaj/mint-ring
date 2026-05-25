@@ -18,18 +18,26 @@ export function GalleryDateSection({ group, onLightbox }: Props) {
       aria-labelledby={headingId}
     >
       <header className="ds-gallery-date-head">
-        <h2 id={headingId} className="ds-gallery-date-title">
-          {group.date_label}
-        </h2>
-        <p className="ds-gallery-date-meta">
-          {group.design_count === 0
-            ? null
-            : `${group.design_count} design pack${group.design_count === 1 ? "" : "s"}`}
-          {group.design_count > 0 && group.tryon_count > 0 ? " · " : null}
-          {group.tryon_count > 0
-            ? `${group.tryon_count} try-on${group.tryon_count === 1 ? "" : "s"}`
-            : null}
-        </p>
+        <div>
+          <p className="ds-gallery-date-kicker">Archive date</p>
+          <h2 id={headingId} className="ds-gallery-date-title">
+            {group.date_label}
+          </h2>
+        </div>
+        <div className="ds-gallery-date-counts" aria-label="Saved items for this date">
+          {group.design_count > 0 && (
+            <span>
+              <strong>{group.design_count}</strong>
+              design pack{group.design_count === 1 ? "" : "s"}
+            </span>
+          )}
+          {group.tryon_count > 0 && (
+            <span>
+              <strong>{group.tryon_count}</strong>
+              try-on{group.tryon_count === 1 ? "" : "s"}
+            </span>
+          )}
+        </div>
       </header>
 
       {group.designs.map((design, index) => (

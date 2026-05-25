@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { ForestCtaChevron } from "@/components/design/ForestCtaChevron";
+import { IconRefresh } from "@/components/icons";
+import { Button } from "@/components/ui";
 import { GalleryDateSection } from "./GalleryDateSection";
 import { GalleryPageHero } from "./GalleryPageHero";
 import { ensureStudioDeviceId } from "@/lib/device-id";
@@ -91,9 +93,9 @@ export function GalleryView() {
           <p>{error}</p>
         </div>
         <div className="ds-results-banner-actions">
-          <button type="button" className="btn-primary" onClick={() => void load()}>
+          <Button variant="primary" onClick={() => void load()} icon={<IconRefresh size={16} />} iconPosition="start">
             Try again
-          </button>
+          </Button>
         </div>
       </div>
           </div>
@@ -131,9 +133,17 @@ export function GalleryView() {
 
   return (
     <>
-      <GalleryPageHero rangeLabel={data.range_label} packCount={data.design_count} />
+      <GalleryPageHero
+        rangeLabel={data.range_label}
+        packCount={data.design_count}
+        tryOnCount={data.tryon_count}
+      />
 
-      <section className="studio ds-studio" aria-label="Saved design packs by date">
+      <section
+        id="gallery-list"
+        className="studio ds-studio"
+        aria-label="Saved design packs by date"
+      >
         <div className="studio-sheet studio-sheet--overlap ds-sheet">
           <div className="ds-gallery-sheet-inner">
         {groups.map((group) => (

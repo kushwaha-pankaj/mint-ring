@@ -1,6 +1,8 @@
 "use client";
 
 import type { AnalyseResult } from "@/lib/api";
+import { IconRefresh } from "@/components/icons";
+import { Button } from "@/components/ui";
 import { RingThumb } from "./RingThumb";
 
 /**
@@ -65,9 +67,15 @@ export function Analysis({
           <p className="analysis-hint">{error}</p>
         </header>
         {onRetry && (
-          <button type="button" className="btn-outline studio-cta" onClick={onRetry}>
+          <Button
+            variant="outline"
+            className="studio-cta"
+            onClick={onRetry}
+            icon={<IconRefresh size={16} />}
+            iconPosition="start"
+          >
             Try again
-          </button>
+          </Button>
         )}
       </section>
     );

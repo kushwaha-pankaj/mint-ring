@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Upload } from "lucide-react";
+import { IconCamera, IconUpload } from "@/components/icons";
+import { Button, SegmentButton, SegmentGroup } from "@/components/ui";
 
 export function HandSourcePicker({
   onPick,
@@ -37,28 +38,37 @@ export function HandSourcePicker({
       )}
 
       <div className="tryon-source">
-        <div className="tryon-source-tabs" role="tablist" aria-label="Hand photo source">
-          <button
-            type="button"
+        <SegmentGroup
+          className="tryon-source-tabs"
+          role="tablist"
+          aria-label="Hand photo source"
+          size="lg"
+        >
+          <SegmentButton
             role="tab"
             aria-selected={mode === "upload"}
-            className={`tryon-source-tab ${mode === "upload" ? "tryon-source-tab--on" : ""}`}
+            active={mode === "upload"}
+            size="lg"
+            className="tryon-source-tab"
+            icon={<IconUpload size={18} />}
             onClick={() => setMode("upload")}
             disabled={inactive}
           >
             Upload
-          </button>
-          <button
-            type="button"
+          </SegmentButton>
+          <SegmentButton
             role="tab"
             aria-selected={mode === "camera"}
-            className={`tryon-source-tab ${mode === "camera" ? "tryon-source-tab--on" : ""}`}
+            active={mode === "camera"}
+            size="lg"
+            className="tryon-source-tab"
+            icon={<IconCamera size={18} />}
             onClick={() => setMode("camera")}
             disabled={inactive}
           >
             Use camera
-          </button>
-        </div>
+          </SegmentButton>
+        </SegmentGroup>
 
         {mode === "upload" ? (
           <div className="tryon-upload">
@@ -80,7 +90,7 @@ export function HandSourcePicker({
               onClick={() => fileRef.current?.click()}
               disabled={inactive}
             >
-              <Upload className="ts-upload-dropzone-icon" size={28} strokeWidth={1.35} aria-hidden />
+              <IconUpload size={28} className="ts-upload-dropzone-icon" />
               <span className="ts-upload-dropzone-title">Choose a hand photo</span>
               <span className="ts-upload-dropzone-hint">JPEG or PNG · up to 12 MB</span>
             </button>
@@ -179,17 +189,29 @@ function HandCamera({
       <div className="tryon-camera-actions">
         {active ? (
           <>
-            <button type="button" className="btn-ghost" onClick={stop}>
+            <Button variant="ghost" onClick={stop} icon={<IconCamera size={16} />} iconPosition="start">
               Stop camera
-            </button>
-            <button type="button" className="btn-primary" onClick={capture} disabled={disabled}>
+            </Button>
+            <Button
+              variant="primary"
+              onClick={capture}
+              disabled={disabled}
+              icon={<IconCamera size={16} />}
+              iconPosition="start"
+            >
               Capture hand
-            </button>
+            </Button>
           </>
         ) : (
-          <button type="button" className="btn-primary" onClick={start} disabled={disabled}>
+          <Button
+            variant="primary"
+            onClick={start}
+            disabled={disabled}
+            icon={<IconCamera size={16} />}
+            iconPosition="start"
+          >
             Start camera
-          </button>
+          </Button>
         )}
       </div>
     </div>

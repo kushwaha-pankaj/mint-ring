@@ -284,6 +284,186 @@ textarea {
   background: currentColor;
 }
 
+/* Button + segment primitives (icons/, ui/) */
+.hm-icon {
+  display: block;
+  flex-shrink: 0;
+}
+.hm-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.15em;
+  height: 1.15em;
+}
+.hm-btn__icon .hm-icon,
+.hm-btn__icon svg {
+  width: 100%;
+  height: 100%;
+}
+.hm-btn__label {
+  line-height: 1.15;
+}
+
+.hm-segment-group {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0.35rem;
+  padding: 3px;
+  background: var(--hm-cream, #f7f6f4);
+  border: 1px solid var(--hm-line);
+  border-radius: 8px;
+}
+.hm-segment-group--sm { gap: 0.25rem; padding: 2px; border-radius: 6px; }
+.hm-segment-group--lg { gap: 0.5rem; padding: 4px; border-radius: 10px; }
+
+.hm-segment-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--hm-muted);
+  font-family: var(--font-display);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.hm-segment-btn--sm {
+  padding: 0.45rem 0.9rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  border-radius: 5px;
+}
+.hm-segment-btn--md {
+  padding: 0.55rem 1.1rem;
+  font-size: 1.35rem;
+  font-weight: 400;
+  border-radius: 6px;
+}
+.hm-segment-btn--lg {
+  min-height: 4rem;
+  padding: 0.9rem 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--hm-ink);
+  background: var(--hm-white);
+  border-color: color-mix(in srgb, var(--hm-brand) 12%, var(--hm-line));
+  border-radius: 8px;
+}
+.hm-segment-btn:hover:not(:disabled) {
+  color: var(--hm-ink);
+}
+.hm-segment-btn--lg:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--hm-brand) 32%, var(--hm-line));
+}
+.hm-segment-btn--on,
+.hm-segment-btn[aria-selected="true"] {
+  color: var(--hm-brand);
+  background: color-mix(in srgb, var(--hm-mint, #6dc49c) 28%, var(--hm-white));
+  border-color: var(--hm-brand);
+  box-shadow: 0 0 0 1px var(--hm-brand);
+  font-weight: 500;
+}
+.hm-segment-btn--sm.hm-segment-btn--on,
+.hm-segment-btn--md.hm-segment-btn--on {
+  background: var(--hm-white);
+  box-shadow: var(--saas-shadow-xs, 0 1px 3px rgb(0 0 0 / 0.06));
+}
+.hm-segment-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.hm-segment-btn__icon {
+  display: inline-flex;
+  width: 1.15em;
+  height: 1.15em;
+  flex-shrink: 0;
+}
+.hm-segment-btn__icon .hm-icon,
+.hm-segment-btn__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.hm-segment-tablist {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.45rem;
+}
+.hm-segment-tab {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 1.15rem 1.25rem;
+  text-align: left;
+  background: var(--hm-white);
+  border: 1px solid color-mix(in srgb, var(--hm-brand) 12%, var(--hm-line));
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+.hm-segment-tab:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--hm-brand) 35%, var(--hm-line));
+}
+.hm-segment-tab--on,
+.hm-segment-tab[aria-selected="true"] {
+  border-color: var(--hm-brand);
+  background: color-mix(in srgb, var(--hm-mint, #6dc49c) 28%, var(--hm-white));
+  box-shadow: 0 0 0 1px var(--hm-brand);
+}
+.hm-segment-tab:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.hm-segment-tab__icon {
+  display: inline-flex;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: var(--hm-primary);
+}
+.hm-segment-tab__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+.hm-segment-tab__label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--hm-ink);
+}
+.hm-segment-tab__meta {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--hm-ink) 62%, transparent);
+}
+
+.saas-header-link__icon {
+  display: inline-flex;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.35rem;
+  opacity: 0.85;
+  vertical-align: -0.1em;
+}
+.saas-header-link__icon .hm-icon,
+.saas-header-link__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
 .btn-ghost-on-dark {
   color: white;
   border-color: rgb(255 255 255 / 0.35);

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { RingSource } from "@/lib/tryon-ring-source";
+import { SegmentButton, SegmentGroup } from "@/components/ui";
 import { TryOnMeshViewer } from "./TryOnMeshViewer";
 
 type View = "render" | "mesh";
@@ -64,25 +65,28 @@ export function TryOnRingPanel({
         </p>
       </header>
 
-      <div
+      <SegmentGroup
         className="ts-ring-view-tabs"
         role="tablist"
         aria-label="Ring preview mode"
+        size="md"
       >
-        <button
-          type="button"
+        <SegmentButton
           role="tab"
           aria-selected={activeView === "render"}
-          className={`ts-ring-view-tab ${activeView === "render" ? "ts-ring-view-tab--on" : ""}`}
+          active={activeView === "render"}
+          size="md"
+          className="ts-ring-view-tab"
           onClick={() => setView("render")}
         >
           2D render
-        </button>
-        <button
-          type="button"
+        </SegmentButton>
+        <SegmentButton
           role="tab"
           aria-selected={activeView === "mesh"}
-          className={`ts-ring-view-tab ${activeView === "mesh" ? "ts-ring-view-tab--on" : ""}`}
+          active={activeView === "mesh"}
+          size="md"
+          className="ts-ring-view-tab"
           onClick={() => setView("mesh")}
           disabled={!hasMesh}
           title={
@@ -92,8 +96,8 @@ export function TryOnRingPanel({
           }
         >
           3D mesh
-        </button>
-      </div>
+        </SegmentButton>
+      </SegmentGroup>
 
       <div className="ts-ring-preview-block">
         <figure className="ts-ring-preview">

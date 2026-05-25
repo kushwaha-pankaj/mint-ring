@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { IconCamera } from "@/components/icons";
+import { Button } from "@/components/ui";
 
 /**
  * Live camera capture. Requests permission, streams to a <video>, and on
@@ -100,22 +102,36 @@ export function Webcam({
       <div className="upload-camera-actions">
         {active ? (
           <>
-            <button className="btn-outline studio-cta" onClick={stop} type="button">
+            <Button
+              variant="outline"
+              className="studio-cta"
+              onClick={stop}
+              icon={<IconCamera size={16} />}
+              iconPosition="start"
+            >
               Stop camera
-            </button>
-            <button
-              className="btn-primary studio-cta"
+            </Button>
+            <Button
+              variant="primary"
+              className="studio-cta"
               onClick={capture}
-              type="button"
               disabled={disabled}
+              icon={<IconCamera size={16} />}
+              iconPosition="start"
             >
               Take photo & identify
-            </button>
+            </Button>
           </>
         ) : (
-          <button className="btn-primary studio-cta w-full sm:w-auto" onClick={start} type="button">
+          <Button
+            variant="primary"
+            className="studio-cta w-full sm:w-auto"
+            onClick={start}
+            icon={<IconCamera size={16} />}
+            iconPosition="start"
+          >
             Start camera
-          </button>
+          </Button>
         )}
       </div>
     </div>

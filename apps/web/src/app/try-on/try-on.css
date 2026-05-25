@@ -531,6 +531,9 @@
   gap: 0.65rem;
   margin-bottom: 1.4rem;
   flex-wrap: wrap;
+  padding: 0;
+  background: transparent;
+  border: 0;
 }
 
 .tryon-source-tab {
@@ -1270,10 +1273,12 @@
    Top-level mode tabs (Photoreal | Live AR)
    ============================================================ */
 .ts-tabs {
+  margin: 0 0 1.25rem;
+}
+.ts-tabs.hm-segment-tablist {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.45rem;
-  margin: 0 0 1.25rem;
 }
 
 .ts-tab {

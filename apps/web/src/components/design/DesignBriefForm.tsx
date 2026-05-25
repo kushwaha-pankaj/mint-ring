@@ -22,6 +22,8 @@ import {
   moodIcon,
   settingStyleIcon,
 } from "@/lib/design-option-icons";
+import { IconChevronRight } from "@/components/icons";
+import { Button } from "@/components/ui";
 import { DesignIconGrid } from "./DesignIconGrid";
 import { ringTypeIcon, stoneShapeIcon } from "@/lib/design-option-icons";
 
@@ -203,30 +205,17 @@ export function DesignBriefForm({
       </div>
 
       <div className="ds-form-actions">
-        <button
-          type="button"
-          className="btn-primary ds-generate-btn"
+        <Button
+          variant="primary"
+          className="ds-generate-btn"
           disabled={!canGenerate}
           onClick={onGenerate}
+          icon={<IconChevronRight size={18} className="ds-chevron-icon" />}
         >
           {generating ? "Generating your design..." : "Generate my design"}
-          <GenerateArrowIcon />
-        </button>
+        </Button>
       </div>
     </div>
   );
 }
 
-function GenerateArrowIcon() {
-  return (
-    <svg viewBox="0 0 20 20" className="ds-chevron-icon" fill="none" aria-hidden>
-      <path
-        d="M4 10h10m0 0l-4-4m4 4l-4 4"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}

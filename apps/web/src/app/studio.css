@@ -4749,7 +4749,9 @@
 }
 
 .studio-page .pick-card-action {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   margin: 0;
   padding: 0;
   font-family: var(--font-display);
@@ -4758,6 +4760,10 @@
   line-height: 1.4;
   letter-spacing: 0.01em;
   color: color-mix(in srgb, var(--hm-ink) 52%, transparent);
+}
+.studio-page .pick-card-action-icon {
+  color: var(--hm-primary);
+  flex-shrink: 0;
 }
 
 .studio-page .pick-card--active .pick-card-footer {
@@ -4792,6 +4798,23 @@
   border-radius: 999px;
   background: color-mix(in srgb, var(--hm-cream) 55%, var(--hm-white));
   border: 1px solid var(--hm-line);
+}
+
+.studio-page .upload-mode .hm-segment-btn {
+  min-height: 3.5rem;
+  font-size: clamp(1.28rem, 1.5vw, 1.42rem);
+  font-weight: 500;
+  border-radius: 999px;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.studio-page .upload-mode .hm-segment-btn--on {
+  color: var(--hm-ink);
+  background: var(--hm-white);
+  border-color: transparent;
+  box-shadow: 0 2px 12px rgb(29 24 19 / 0.08);
 }
 
 .studio-page .upload-mode-btn {

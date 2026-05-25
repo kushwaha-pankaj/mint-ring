@@ -1,5 +1,7 @@
 "use client";
 
+import { IconDesign } from "@/components/icons";
+import { Button } from "@/components/ui";
 import type { RingSource } from "@/lib/tryon-ring-source";
 
 export function RingSourceCard({
@@ -66,9 +68,16 @@ export function RingSourceCard({
         This is the render we place on your hand. Use <strong>Adjust</strong> in the main panel if
         auto placement needs a small nudge.
       </p>
-      <a href="/design" className="btn-ghost tryon-ring-card-cta">
+      <Button
+        as="a"
+        href="/design"
+        variant="ghost"
+        className="tryon-ring-card-cta"
+        icon={<IconDesign size={16} />}
+        iconPosition="start"
+      >
         Back to design pack
-      </a>
+      </Button>
     </aside>
   );
 }

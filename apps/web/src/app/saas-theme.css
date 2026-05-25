@@ -154,6 +154,8 @@
 }
 
 .saas-header-link {
+  display: inline-flex;
+  align-items: center;
   padding: 0.5rem 1.2rem;
   font-family: var(--font-display);
   font-size: 1.35rem;
@@ -218,10 +220,11 @@
   color: var(--hm-primary);
   box-shadow: 0 6px 20px -8px color-mix(in srgb, var(--hm-primary) 35%, transparent);
 }
-.saas-header-cta .hm-pixel-arrow {
-  color: var(--hm-ink);
+.saas-header-cta__icon {
+  color: var(--hm-brand);
+  flex-shrink: 0;
 }
-.saas-header-cta:hover .hm-pixel-arrow {
+.saas-header-cta:hover .saas-header-cta__icon {
   color: var(--hm-primary);
 }
 .saas-header-cta:active {

@@ -12,7 +12,6 @@ import { RingThumb } from "./RingThumb";
 import { DetectionPanel } from "./DetectionPanel";
 import { Analysis } from "./Analysis";
 import { MatchControls } from "./MatchControls";
-import { MatchDetails } from "./MatchDetails";
 import { MatchShortlist } from "./MatchShortlist";
 import {
   CATALOGUE_MATCH_LEAD,
@@ -20,6 +19,8 @@ import {
   CATALOGUE_NO_MATCH_LEAD,
   CATALOGUE_NO_MATCH_STATUS,
 } from "@/lib/catalogue-match";
+import { IconAnalyse, IconExternal } from "@/components/icons";
+import { Button } from "@/components/ui";
 
 export function ResultDisplay({
   result,
@@ -39,7 +40,6 @@ export function ResultDisplay({
   topK,
   onThresholdChange,
   onTopKChange,
-  technicalInDetails = false,
 }: {
   result: IdentifyResult | null;
   preview: string | null;
@@ -58,8 +58,6 @@ export function ResultDisplay({
   topK: number;
   onThresholdChange: (next: number) => void;
   onTopKChange: (next: number) => void;
-  /** Collapse threshold, shortlist, and metrics behind one disclosure (Identify page). */
-  technicalInDetails?: boolean;
 }) {
   const userImage = detection?.applied && cropUrl ? cropUrl : preview;
   const detected = Boolean(detection?.applied);
@@ -135,16 +133,19 @@ export function ResultDisplay({
           onClear={onClear}
         />
 
-        <MatchResearchBlock
-          result={result}
-          detection={detection}
-          threshold={threshold}
-          topK={topK}
-          loading={loading}
-          technicalInDetails={technicalInDetails}
-          onThresholdChange={onThresholdChange}
-          onTopKChange={onTopKChange}
-        />
+        <div className="match-rank-panel font-display" aria-label="Match settings and catalogue shortlist">
+          <MatchControls
+            embedded
+            className="match-controls--in-results"
+            threshold={threshold}
+            topK={topK}
+            onThresholdChange={onThresholdChange}
+            onTopKChange={onTopKChange}
+            disabled={loading}
+          />
+          <div className="match-rank-panel__divide" aria-hidden />
+          <MatchShortlist embedded result={result} />
+        </div>
       </section>
     );
   }
@@ -217,33 +218,40 @@ export function ResultDisplay({
             </p>
           )}
           <div className="match-flow__actions">
-            <a
+            <Button
+              as="a"
               href="https://www.hockleymint.co.uk/wedding-rings.aspx"
               target="_blank"
               rel="noreferrer noopener"
-              className="btn-primary studio-cta"
+              variant="primary"
+              className="studio-cta"
+              icon={<IconExternal size={16} />}
+              iconPosition="end"
             >
               View in catalogue
-            </a>
+            </Button>
             {onClear && (
-              <button type="button" onClick={onClear} className="btn-outline studio-cta">
+              <Button variant="outline" className="studio-cta" onClick={onClear}>
                 Clear
-              </button>
+              </Button>
             )}
           </div>
         </div>
       </div>
 
-      <MatchResearchBlock
-        result={result}
-        detection={detection}
-        threshold={threshold}
-        topK={topK}
-        loading={loading}
-        technicalInDetails={technicalInDetails}
-        onThresholdChange={onThresholdChange}
-        onTopKChange={onTopKChange}
-      />
+      <div className="match-rank-panel font-display" aria-label="Match settings and catalogue shortlist">
+        <MatchControls
+          embedded
+          className="match-controls--in-results"
+          threshold={threshold}
+          topK={topK}
+          onThresholdChange={onThresholdChange}
+          onTopKChange={onTopKChange}
+          disabled={loading}
+        />
+        <div className="match-rank-panel__divide" aria-hidden />
+        <MatchShortlist embedded result={result} />
+      </div>
 
       <ResultsFollowOn
         showAnalyseCta={showAnalyseCta}
@@ -258,63 +266,6 @@ export function ResultDisplay({
         detection={detection}
       />
     </section>
-  );
-}
-
-function MatchResearchBlock({
-  result,
-  detection,
-  threshold,
-  topK,
-  loading,
-  technicalInDetails,
-  onThresholdChange,
-  onTopKChange,
-}: {
-  result: IdentifyResult;
-  detection?: DetectionMeta | null;
-  threshold: number;
-  topK: number;
-  loading: boolean;
-  technicalInDetails: boolean;
-  onThresholdChange: (next: number) => void;
-  onTopKChange: (next: number) => void;
-}) {
-  const inner = (
-    <>
-      <MatchControls
-        embedded
-        className="match-controls--in-results"
-        threshold={threshold}
-        topK={topK}
-        onThresholdChange={onThresholdChange}
-        onTopKChange={onTopKChange}
-        disabled={loading}
-      />
-      <div className="match-rank-panel__divide" aria-hidden />
-      <MatchShortlist embedded result={result} />
-      <MatchDetails
-        result={result}
-        detection={detection ?? undefined}
-        variant="standalone"
-        showHead={!technicalInDetails}
-      />
-    </>
-  );
-
-  if (technicalInDetails) {
-    return (
-      <details className="id-match-technical font-display" aria-label="Technical detail">
-        <summary>Technical detail</summary>
-        <div className="match-rank-panel match-rank-panel--in-details">{inner}</div>
-      </details>
-    );
-  }
-
-  return (
-    <div className="match-rank-panel font-display" aria-label="Match settings and catalogue shortlist">
-      {inner}
-    </div>
   );
 }
 
@@ -371,13 +322,15 @@ function ResultsFollowOn({
                 the photograph.
               </p>
             </div>
-            <button
-              type="button"
-              className="btn-primary studio-cta match-flow__analyse-btn"
+            <Button
+              variant="primary"
+              className="studio-cta match-flow__analyse-btn"
               onClick={onAnalyse}
+              icon={<IconAnalyse size={18} />}
+              iconPosition="start"
             >
               Analyse this ring
-            </button>
+            </Button>
           </div>
         </section>
       )}
@@ -448,9 +401,9 @@ function CatalogueNoMatch({
 
         {onClear && (
           <div className="match-flow__actions">
-            <button type="button" onClick={onClear} className="btn-outline studio-cta">
+            <Button variant="outline" className="studio-cta" onClick={onClear}>
               Clear and try again
-            </button>
+            </Button>
           </div>
         )}
       </div>
@@ -501,18 +454,18 @@ function OutcomePanel({
         )}
         <div className="match-flow__outcome-actions">
           {primaryHref ? (
-            <a href={primaryHref} className="btn-primary studio-cta">
+            <Button as="a" href={primaryHref} variant="primary" className="studio-cta">
               {primaryLabel}
-            </a>
+            </Button>
           ) : (
-            <button type="button" className="btn-primary studio-cta" onClick={primaryAction}>
+            <Button variant="primary" className="studio-cta" onClick={primaryAction}>
               {primaryLabel}
-            </button>
+            </Button>
           )}
           {secondaryLabel && secondaryAction && (
-            <button type="button" className="btn-outline studio-cta" onClick={secondaryAction}>
+            <Button variant="outline" className="studio-cta" onClick={secondaryAction}>
               {secondaryLabel}
-            </button>
+            </Button>
           )}
         </div>
       </div>

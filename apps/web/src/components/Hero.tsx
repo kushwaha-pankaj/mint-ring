@@ -1,4 +1,5 @@
-import { PixelArrowIcon } from "@/components/PixelArrowIcon";
+import { IconSample, IconUpload } from "@/components/icons";
+import { Button } from "@/components/ui";
 
 export function Hero() {
   return (
@@ -13,13 +14,26 @@ export function Hero() {
             your image and match it to the Hockley Mint catalogue.
           </p>
           <div className="saas-hero-actions">
-            <a href="#studio" className="btn-primary saas-hero-cta">
+            <Button
+              as="a"
+              href="#studio"
+              variant="primary"
+              className="saas-hero-cta"
+              icon={<IconSample size={18} />}
+              iconPosition="start"
+            >
               Try a sample
-            </a>
-            <a href="#studio" className="btn-outline saas-hero-cta">
-              <span>Upload a photograph</span>
-              <PixelArrowIcon />
-            </a>
+            </Button>
+            <Button
+              as="a"
+              href="#studio"
+              variant="outline"
+              className="saas-hero-cta"
+              icon={<IconUpload size={18} />}
+              iconPosition="start"
+            >
+              Upload a photograph
+            </Button>
           </div>
         </div>
 

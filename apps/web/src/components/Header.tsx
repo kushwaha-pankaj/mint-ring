@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { PixelArrowIcon } from "@/components/PixelArrowIcon";
+import { NAV_MODULE_ICONS, IconGrid } from "@/components/icons";
+import { Button } from "@/components/ui";
 
 const STUDIO_LINKS = [
   { label: "Identify", href: "/", disabled: false },
@@ -58,9 +59,15 @@ export function Header() {
           </a>
 
           <nav className="saas-header-nav" aria-label="Studio modules">
-            {STUDIO_LINKS.map((link) =>
-              link.disabled ? (
+            {STUDIO_LINKS.map((link) => {
+              const NavIcon = NAV_MODULE_ICONS[link.label as keyof typeof NAV_MODULE_ICONS];
+              return link.disabled ? (
                 <span key={link.label} className="saas-header-link saas-header-link--disabled">
+                  {NavIcon ? (
+                    <span className="saas-header-link__icon">
+                      <NavIcon size={16} />
+                    </span>
+                  ) : null}
                   {link.label}
                 </span>
               ) : (
@@ -76,10 +83,15 @@ export function Header() {
                     mounted && isCurrentPath(pathname, link.href) ? "page" : undefined
                   }
                 >
+                  {NavIcon ? (
+                    <span className="saas-header-link__icon">
+                      <NavIcon size={16} />
+                    </span>
+                  ) : null}
                   {link.label}
                 </a>
-              ),
-            )}
+              );
+            })}
           </nav>
 
           <div className="saas-header-actions">
@@ -89,8 +101,8 @@ export function Header() {
               rel="noreferrer noopener"
               className="saas-header-cta"
             >
+              <IconGrid size={18} className="saas-header-cta__icon" />
               <span>Catalogue</span>
-              <PixelArrowIcon />
             </a>
             <button
               type="button"
@@ -155,15 +167,19 @@ export function Header() {
 
         <div className="border-t border-line px-6 py-8">
           <p className="text-[1.3rem] font-light text-muted">Hockley Mint AI Ring Studio</p>
-          <a
+          <Button
+            as="a"
             href={CATALOGUE_URL}
             target="_blank"
             rel="noreferrer noopener"
-            className="btn-primary mt-5 w-full"
+            variant="primary"
+            className="mt-5 w-full"
+            icon={<IconGrid size={18} />}
+            iconPosition="start"
             onClick={close}
           >
             Visit hockleymint.co.uk
-          </a>
+          </Button>
         </div>
       </aside>
     </>

@@ -1,5 +1,6 @@
 "use client";
 
+import { IconIdentify } from "@/components/icons";
 import { SAMPLE_PICKS, fetchSampleAsFile } from "@/lib/sample";
 
 export function SamplePicks({
@@ -53,7 +54,10 @@ export function SamplePicks({
                 </span>
                 <span className="pick-card-footer">
                   <span className="pick-card-name">{sample.label}</span>
-                  <span className="pick-card-action">Tap to identify</span>
+                  <span className="pick-card-action">
+                    <IconIdentify size={14} className="pick-card-action-icon" />
+                    Tap to identify
+                  </span>
                 </span>
               </button>
             </li>

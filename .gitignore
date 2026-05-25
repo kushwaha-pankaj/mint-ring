@@ -21,3 +21,15 @@ apps/api/storage/
 
 # Optional large external dataset
 data/zenodo_11khands/
+
+# Documentation (keep locally; do not publish to GitHub)
+*.md
+docs/
+
+# Local-only folder (backups, moved notes, etc.)
+local-only/
+
+# Large / internal assets (not needed on GitHub; keep on disk for local demos)
+round1-backup-*.zip
+dataset_raw/
+plots/

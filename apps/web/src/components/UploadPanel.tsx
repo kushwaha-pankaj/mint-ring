@@ -1,6 +1,8 @@
 "use client";
 
-import { useId, useRef, useState, type ReactNode } from "react";
+import { useId, useRef, useState } from "react";
+import { IconBrowse, IconCamera, IconUpload } from "@/components/icons";
+import { Button, SegmentButton, SegmentGroup } from "@/components/ui";
 import { Webcam } from "./Webcam";
 
 type Mode = "upload" | "camera";
@@ -21,14 +23,33 @@ export function UploadPanel({
 
   return (
     <div className={`upload-panel ${hasResult ? "upload-panel--matched" : ""}`}>
-      <div className="upload-mode" role="tablist" aria-label="Add a photograph">
-        <ModeButton active={mode === "upload"} onClick={() => setMode("upload")}>
+      <SegmentGroup
+        className="upload-mode hm-segment-group--md"
+        role="tablist"
+        aria-label="Add a photograph"
+        size="md"
+      >
+        <SegmentButton
+          role="tab"
+          aria-selected={mode === "upload"}
+          active={mode === "upload"}
+          size="md"
+          icon={<IconUpload size={16} />}
+          onClick={() => setMode("upload")}
+        >
           Upload file
-        </ModeButton>
-        <ModeButton active={mode === "camera"} onClick={() => setMode("camera")}>
+        </SegmentButton>
+        <SegmentButton
+          role="tab"
+          aria-selected={mode === "camera"}
+          active={mode === "camera"}
+          size="md"
+          icon={<IconCamera size={16} />}
+          onClick={() => setMode("camera")}
+        >
           Camera
-        </ModeButton>
-      </div>
+        </SegmentButton>
+      </SegmentGroup>
 
       {mode === "upload" ? (
         <FileUpload
@@ -47,28 +68,6 @@ export function UploadPanel({
         </p>
       )}
     </div>
-  );
-}
-
-function ModeButton({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      role="tab"
-      aria-selected={active}
-      onClick={onClick}
-      className={active ? "upload-mode-btn upload-mode-btn--on" : "upload-mode-btn"}
-    >
-      {children}
-    </button>
   );
 }
 
@@ -141,29 +140,33 @@ function FileUpload({
               <span className="upload-preview-label">Your photograph</span>
               <span className="upload-preview-hint">Drop a new file here or replace</span>
             </div>
-            <button
-              type="button"
-              className="btn-outline studio-cta upload-preview-replace"
+            <Button
+              variant="outline"
+              className="studio-cta upload-preview-replace"
               disabled={loading}
               onClick={openPicker}
+              icon={<IconBrowse size={16} />}
+              iconPosition="start"
             >
               Replace
-            </button>
+            </Button>
           </div>
         </div>
       ) : (
         <div className="upload-empty">
-          <UploadIcon />
+          <IconUpload size={40} className="upload-empty-icon" />
           <p className="upload-empty-title">Add a ring photograph</p>
           <p className="upload-empty-meta">Drag and drop here, or choose a file</p>
-          <button
-            type="button"
-            className="btn-primary upload-empty-browse"
+          <Button
+            variant="primary"
+            className="upload-empty-browse"
             disabled={loading}
             onClick={openPicker}
+            icon={<IconBrowse size={18} />}
+            iconPosition="start"
           >
             Browse files
-          </button>
+          </Button>
           <p className="upload-empty-formats">JPG, PNG or WebP. Face-on, steady light.</p>
         </div>
       )}
@@ -174,22 +177,5 @@ function FileUpload({
         </div>
       )}
     </div>
-  );
-}
-
-function UploadIcon() {
-  return (
-    <svg
-      viewBox="0 0 40 40"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.25"
-      className="upload-empty-icon"
-      aria-hidden
-    >
-      <path d="M20 26V14M20 14l-5 5M20 14l5 5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M8 28h24" strokeLinecap="round" />
-      <rect x="6" y="8" width="28" height="24" rx="1" />
-    </svg>
   );
 }
