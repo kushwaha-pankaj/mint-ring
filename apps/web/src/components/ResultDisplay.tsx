@@ -12,6 +12,7 @@ import { RingThumb } from "./RingThumb";
 import { DetectionPanel } from "./DetectionPanel";
 import { Analysis } from "./Analysis";
 import { MatchControls } from "./MatchControls";
+import { MatchDetails } from "./MatchDetails";
 import { MatchShortlist } from "./MatchShortlist";
 import {
   CATALOGUE_MATCH_LEAD,
@@ -38,6 +39,7 @@ export function ResultDisplay({
   topK,
   onThresholdChange,
   onTopKChange,
+  technicalInDetails = false,
 }: {
   result: IdentifyResult | null;
   preview: string | null;
@@ -56,6 +58,8 @@ export function ResultDisplay({
   topK: number;
   onThresholdChange: (next: number) => void;
   onTopKChange: (next: number) => void;
+  /** Collapse threshold, shortlist, and metrics behind one disclosure (Identify page). */
+  technicalInDetails?: boolean;
 }) {
   const userImage = detection?.applied && cropUrl ? cropUrl : preview;
   const detected = Boolean(detection?.applied);
@@ -131,19 +135,16 @@ export function ResultDisplay({
           onClear={onClear}
         />
 
-        <div className="match-rank-panel font-display" aria-label="Match settings and catalogue shortlist">
-          <MatchControls
-            embedded
-            className="match-controls--in-results"
-            threshold={threshold}
-            topK={topK}
-            onThresholdChange={onThresholdChange}
-            onTopKChange={onTopKChange}
-            disabled={loading}
-          />
-          <div className="match-rank-panel__divide" aria-hidden />
-          <MatchShortlist embedded result={result} />
-        </div>
+        <MatchResearchBlock
+          result={result}
+          detection={detection}
+          threshold={threshold}
+          topK={topK}
+          loading={loading}
+          technicalInDetails={technicalInDetails}
+          onThresholdChange={onThresholdChange}
+          onTopKChange={onTopKChange}
+        />
       </section>
     );
   }
@@ -233,19 +234,16 @@ export function ResultDisplay({
         </div>
       </div>
 
-      <div className="match-rank-panel font-display" aria-label="Match settings and catalogue shortlist">
-        <MatchControls
-          embedded
-          className="match-controls--in-results"
-          threshold={threshold}
-          topK={topK}
-          onThresholdChange={onThresholdChange}
-          onTopKChange={onTopKChange}
-          disabled={loading}
-        />
-        <div className="match-rank-panel__divide" aria-hidden />
-        <MatchShortlist embedded result={result} />
-      </div>
+      <MatchResearchBlock
+        result={result}
+        detection={detection}
+        threshold={threshold}
+        topK={topK}
+        loading={loading}
+        technicalInDetails={technicalInDetails}
+        onThresholdChange={onThresholdChange}
+        onTopKChange={onTopKChange}
+      />
 
       <ResultsFollowOn
         showAnalyseCta={showAnalyseCta}
@@ -260,6 +258,63 @@ export function ResultDisplay({
         detection={detection}
       />
     </section>
+  );
+}
+
+function MatchResearchBlock({
+  result,
+  detection,
+  threshold,
+  topK,
+  loading,
+  technicalInDetails,
+  onThresholdChange,
+  onTopKChange,
+}: {
+  result: IdentifyResult;
+  detection?: DetectionMeta | null;
+  threshold: number;
+  topK: number;
+  loading: boolean;
+  technicalInDetails: boolean;
+  onThresholdChange: (next: number) => void;
+  onTopKChange: (next: number) => void;
+}) {
+  const inner = (
+    <>
+      <MatchControls
+        embedded
+        className="match-controls--in-results"
+        threshold={threshold}
+        topK={topK}
+        onThresholdChange={onThresholdChange}
+        onTopKChange={onTopKChange}
+        disabled={loading}
+      />
+      <div className="match-rank-panel__divide" aria-hidden />
+      <MatchShortlist embedded result={result} />
+      <MatchDetails
+        result={result}
+        detection={detection ?? undefined}
+        variant="standalone"
+        showHead={!technicalInDetails}
+      />
+    </>
+  );
+
+  if (technicalInDetails) {
+    return (
+      <details className="id-match-technical font-display" aria-label="Technical detail">
+        <summary>Technical detail</summary>
+        <div className="match-rank-panel match-rank-panel--in-details">{inner}</div>
+      </details>
+    );
+  }
+
+  return (
+    <div className="match-rank-panel font-display" aria-label="Match settings and catalogue shortlist">
+      {inner}
+    </div>
   );
 }
 

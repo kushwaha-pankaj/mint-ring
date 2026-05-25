@@ -17,11 +17,13 @@ export function MatchDetails({
   result,
   detection,
   variant = "standalone",
+  showHead = true,
 }: {
   result: IdentifyResult;
   detection?: DetectionMeta;
   /** standalone: full section; column: subsection inside design analysis */
   variant?: "standalone" | "column";
+  showHead?: boolean;
 }) {
   const [health, setHealth] = useState<HealthResult | null>(null);
 
@@ -31,7 +33,7 @@ export function MatchDetails({
 
   const body = (
     <>
-      {variant === "standalone" && (
+      {variant === "standalone" && showHead && (
         <header className="match-research-head">
           <p className="studio-label">Technical detail</p>
           <h3 className="match-research-title font-display studio-section-title">

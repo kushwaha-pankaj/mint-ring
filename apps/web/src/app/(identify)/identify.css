@@ -1,0 +1,272 @@
+/*
+ * Identify module: Design-studio tokens on / (route group (identify)).
+ */
+
+.ds-page--identify {
+  --ds-forest: #00332b;
+  --ds-forest-muted: #4a5c57;
+  --ds-accent: var(--hm-primary);
+  --ds-page-bg: #fbfaf8;
+  --ds-panel-border: #e7e1db;
+  --ds-tile-border: #e7e2dd;
+  --ds-selected-bg: #f6fbf8;
+  --id-upload-min-height: 22rem;
+
+  background: var(--ds-page-bg);
+}
+
+.ds-page--identify .ds-sheet,
+.ds-page--identify .studio-sheet,
+.ds-page--identify.studio-page .studio-sheet {
+  max-width: none;
+  width: 100%;
+  margin-top: 0;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.ds-page--identify .studio-sheet--overlap {
+  margin-top: 0;
+}
+
+.ds-page--identify #studio {
+  padding-inline: clamp(1.6rem, 4vw, 4rem);
+  padding-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+/* Hero (step 1 forest stepper) */
+.ds-page--identify .ds-hero {
+  padding-top: 0.8rem;
+  background: var(--ds-page-bg);
+}
+
+.ds-page--identify .ds-hero-title {
+  font-family: var(--font-ds-serif, "Playfair Display", Georgia, serif);
+  font-weight: 500;
+  color: #111;
+}
+
+.ds-page--identify .ds-hero-em {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--ds-forest);
+}
+
+.ds-page--identify .ds-hero-lead {
+  font-size: 1.55rem;
+  font-weight: 400;
+  color: var(--ds-forest-muted);
+  max-width: 44rem;
+}
+
+.ds-page--identify .id-hero-cta {
+  margin-top: 1.35rem;
+  width: min(100%, 20rem);
+}
+
+.ds-page--identify .ds-stepper-step--active .ds-stepper-num,
+.ds-page--identify .ds-stepper-step--done .ds-stepper-num {
+  color: var(--hm-white);
+  background: var(--ds-forest);
+  border-color: var(--ds-forest);
+}
+
+.ds-page--identify .ds-stepper-step--active .ds-stepper-label,
+.ds-page--identify .ds-stepper-step--done .ds-stepper-label {
+  color: var(--ds-forest);
+  font-weight: 700;
+}
+
+.ds-page--identify .ds-stepper-label {
+  color: #b0b5b3;
+}
+
+.ds-page--identify .ds-stepper-num {
+  color: #b0b5b3;
+  border-color: #d8dcdb;
+  background: var(--hm-white);
+}
+
+/* Studio grid: wizard card + sidebar */
+.ds-page--identify .id-studio-grid {
+  display: grid;
+  width: 100%;
+  max-width: min(148rem, 100%);
+  margin-inline: auto;
+  gap: 2.4rem;
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .ds-page--identify .id-studio-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 22rem);
+    gap: 2.8rem;
+  }
+
+  .ds-page--identify .id-studio-sidebar {
+    position: sticky;
+    top: 5.25rem;
+    align-self: start;
+  }
+}
+
+.ds-page--identify .ds-wizard-card--identify {
+  padding: 2.4rem 2.6rem 2.8rem;
+  background: var(--hm-white);
+  border: 1px solid var(--ds-panel-border);
+  border-radius: 14px;
+  box-shadow: 0 12px 36px rgb(38 28 18 / 0.06);
+}
+
+.ds-page--identify .id-panel-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ds-forest);
+}
+
+.ds-page--identify .id-panel-copy {
+  margin: 0 0 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.55;
+  color: rgb(17 17 17 / 0.62);
+}
+
+.ds-page--identify .id-samples-strip {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--ds-tile-border);
+}
+
+.ds-page--identify .id-samples-strip .studio-label {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.14em;
+}
+
+/* Larger upload preview */
+.ds-page--identify .upload-panel {
+  min-height: var(--id-upload-min-height);
+}
+
+.ds-page--identify .upload-panel .upload-preview,
+.ds-page--identify .upload-panel .upload-dropzone {
+  min-height: var(--id-upload-min-height);
+}
+
+.ds-page--identify .upload-mode {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--ds-tile-border);
+}
+
+.ds-page--identify .upload-mode button {
+  min-height: 3.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Sidebar */
+.ds-sidebar-card--identify {
+  padding: 1.85rem 1.75rem;
+}
+
+.ds-sidebar-body--identify {
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: rgb(17 17 17 / 0.62);
+}
+
+.ds-sidebar-title--serif {
+  font-family: var(--font-ds-serif, "Playfair Display", Georgia, serif);
+  font-weight: 500;
+}
+
+.id-sidebar-gallery-note {
+  margin: 1.25rem 0 0;
+  padding-top: 1.15rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--ds-forest-muted);
+  border-top: 1px solid var(--ds-tile-border);
+}
+
+.id-sidebar-link {
+  font-weight: 600;
+  color: var(--ds-forest);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.id-sidebar-link:hover {
+  color: var(--hm-primary);
+}
+
+/* Results: technical detail collapsed by default */
+.ds-page--identify .id-match-technical {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: color-mix(in srgb, var(--hm-cream) 50%, var(--hm-white));
+  border: 1px solid var(--ds-panel-border);
+  border-radius: 12px;
+}
+
+.ds-page--identify .id-match-technical > summary {
+  cursor: pointer;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ds-forest);
+  list-style: none;
+}
+
+.ds-page--identify .id-match-technical > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ds-page--identify .id-match-technical[open] > summary {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--ds-tile-border);
+}
+
+.ds-page--identify .id-match-technical .match-controls {
+  margin-bottom: 1.5rem;
+}
+
+.ds-page--identify .match-flow__summary-head .studio-label,
+.ds-page--identify .match-flow__analyse-copy .studio-label {
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+}
+
+.ds-page--identify .match-flow__name {
+  font-family: var(--font-ds-serif, "Playfair Display", Georgia, serif);
+}
+
+.ds-page--identify .match-flow__analyse-title {
+  font-size: 1.65rem;
+  color: var(--ds-forest);
+}
+
+.ds-page--identify .match-research--open {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ds-tile-border);
+}
+
+.ds-page--identify .match-research-head .studio-label {
+  color: var(--hm-primary);
+}
+
+@media (max-width: 959px) {
+  .ds-page--identify .id-samples-strip .sample-picks {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+}
