@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+.pytest_cache/
+
+# Env and secrets
+**/.env
+**/.env.local
+apps/api/.env
+
+# Node / Next
+node_modules/
+apps/web/node_modules/
+apps/web/.next/
+apps/web/out/
+*.tsbuildinfo
+
+# Runtime API storage (design packs, SQLite)
+apps/api/storage/
+
+# Optional large external dataset
+data/zenodo_11khands/

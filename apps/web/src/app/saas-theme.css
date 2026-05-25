@@ -1,0 +1,643 @@
+/*
+ * NexSaS AI Application layout layer (nextsaas-wp.pixels71.com/ai-application).
+ * Inter Tight app-wide (same stack as hero title); Korolev fallback.
+ * HM palette only — light editorial surfaces, not generic “AI startup” chrome.
+ */
+
+:root {
+  --saas-radius-sm: 6px;
+  --saas-radius-md: 14px;
+  --saas-radius-lg: 20px;
+  --saas-radius-xl: 28px;
+  --saas-shadow-xs: 0 1px 2px rgb(29 24 19 / 0.04);
+  --saas-shadow-sm: 0 4px 20px -6px rgb(29 24 19 / 0.08);
+  --saas-shadow-md: 0 16px 48px -20px rgb(29 24 19 / 0.12);
+  --saas-shadow-card: 0 0 0 1px var(--hm-line), var(--saas-shadow-sm);
+  --saas-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --saas-surface: #fafaf9;
+  --saas-surface-2: #f3f2f0;
+  --saas-hero-panel: var(--hm-hero-panel);
+}
+
+/* ── Floating HM brand-green pill header ───────────────────────── */
+
+.saas-header-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 1.4rem clamp(1.2rem, 3vw, 2.4rem) 0.8rem;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--hm-white) 0%,
+    color-mix(in srgb, var(--hm-cream) 40%, var(--hm-white)) 100%
+  );
+}
+
+.saas-header {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6rem;
+  max-width: 132rem;
+  margin: 0 auto;
+  min-height: 6.6rem;
+  padding: 0.55rem 0.8rem 0.55rem 0.55rem;
+  background: linear-gradient(
+    165deg,
+    var(--hm-header-pill-top) 0%,
+    var(--hm-header-pill) 42%,
+    color-mix(in srgb, var(--hm-header-pill) 88%, #002818) 100%
+  );
+  border: 1px solid color-mix(in srgb, var(--hm-ink) 22%, transparent);
+  border-radius: 999px;
+  box-shadow:
+    0 10px 36px -14px color-mix(in srgb, var(--hm-brand) 55%, transparent),
+    0 0 0 1px rgb(255 255 255 / 0.1) inset;
+}
+@media (min-width: 900px) {
+  .saas-header {
+    padding: 0.65rem 1rem 0.65rem 0.65rem;
+    min-height: 7.2rem;
+  }
+}
+
+.saas-header-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0.5rem 1.15rem 0.5rem 1rem;
+  background: var(--hm-white);
+  border: 1px solid color-mix(in srgb, var(--hm-ink) 12%, transparent);
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 2px 12px -4px rgb(29 24 19 / 0.12);
+  transition: box-shadow 0.2s var(--saas-ease);
+}
+.saas-header-brand:hover {
+  box-shadow: 0 4px 16px -6px rgb(29 24 19 / 0.18);
+}
+.saas-header-brand img {
+  display: block;
+  height: 3.6rem;
+  width: auto;
+  max-width: 11.5rem;
+  object-fit: contain;
+}
+@media (min-width: 768px) {
+  .saas-header-brand {
+    padding: 0.55rem 1.3rem 0.55rem 1.15rem;
+  }
+  .saas-header-brand img {
+    height: 4rem;
+    max-width: 12.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .saas-header-brand {
+    padding: 0.45rem 0.95rem 0.45rem 0.85rem;
+  }
+  .saas-header-brand img {
+    height: 3.2rem;
+    max-width: 10rem;
+  }
+}
+
+.saas-header-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  border: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--hm-mint) 18%, transparent);
+  padding: 0;
+  color: var(--hm-white);
+  cursor: pointer;
+  transition: background 0.2s var(--saas-ease);
+}
+.saas-header-menu-btn:hover {
+  background: color-mix(in srgb, var(--hm-primary) 32%, transparent);
+}
+.saas-header-menu-btn span:not([aria-hidden]) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+@media (min-width: 900px) {
+  .saas-header-menu-btn {
+    display: none;
+  }
+}
+
+.saas-header-nav {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 1rem;
+  max-width: min(52rem, 55vw);
+}
+@media (min-width: 900px) {
+  .saas-header-nav {
+    display: flex;
+  }
+}
+
+.saas-header-link {
+  padding: 0.5rem 1.2rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: color-mix(in srgb, var(--hm-mint) 45%, var(--hm-white));
+  text-decoration: none;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition:
+    color 0.2s var(--saas-ease),
+    background 0.2s var(--saas-ease);
+}
+.saas-header-link:hover {
+  color: var(--hm-white);
+  background: color-mix(in srgb, var(--hm-primary) 22%, transparent);
+}
+.saas-header-link--active {
+  color: var(--hm-white);
+  background: color-mix(in srgb, var(--hm-primary) 38%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hm-ink) 18%, transparent);
+}
+.saas-header-link--disabled {
+  opacity: 0.38;
+  cursor: default;
+  pointer-events: none;
+}
+
+.saas-header-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.saas-header-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 0.9rem 1.6rem 0.9rem 2rem;
+  background: var(--hm-cream);
+  border: 1px solid color-mix(in srgb, var(--hm-ink) 14%, transparent);
+  border-radius: 999px;
+  color: var(--hm-brand);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.2s var(--saas-ease),
+    box-shadow 0.2s var(--saas-ease),
+    background 0.2s var(--saas-ease),
+    color 0.2s var(--saas-ease);
+}
+.saas-header-cta:hover {
+  transform: translateY(-1px);
+  background: var(--hm-white);
+  color: var(--hm-primary);
+  box-shadow: 0 6px 20px -8px color-mix(in srgb, var(--hm-primary) 35%, transparent);
+}
+.saas-header-cta .hm-pixel-arrow {
+  color: var(--hm-ink);
+}
+.saas-header-cta:hover .hm-pixel-arrow {
+  color: var(--hm-primary);
+}
+.saas-header-cta:active {
+  transform: translateY(0);
+}
+@media (max-width: 520px) {
+  .saas-header-cta {
+    padding: 0.9rem 1.4rem;
+    font-size: 1.3rem;
+  }
+}
+
+/* ── Hero (light, editorial — NexSaS AI Application) ───────────── */
+
+.saas-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 5.6rem 2rem 4.8rem;
+  background: var(--saas-surface);
+  color: var(--hm-ink);
+}
+@media (min-width: 768px) {
+  .saas-hero {
+    padding: 7.2rem 4rem 5.6rem;
+  }
+}
+
+.saas-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 55% 42% at 78% 8%,
+      color-mix(in srgb, var(--hm-primary) 11%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 40% 35% at 8% 92%,
+      color-mix(in srgb, var(--hm-brand) 7%, transparent),
+      transparent 70%
+    );
+}
+
+.saas-hero-inner {
+  position: relative;
+  max-width: 132rem;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.saas-kicker {
+  margin: 0 0 1.6rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hm-primary);
+}
+
+.saas-hero-title {
+  margin: 0;
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-size: clamp(3.8rem, 6.8vw, 7.2rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--hm-ink);
+}
+
+.saas-hero-lead {
+  margin: 2rem 0 0;
+  max-width: 52ch;
+  font-size: clamp(1.6rem, 2vw, 1.9rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--hm-ink) 62%, transparent);
+}
+
+.saas-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 2.8rem;
+}
+
+.saas-hero-note {
+  margin: 2.4rem 0 0;
+  max-width: 48ch;
+  font-size: 1.35rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--hm-ink) 48%, transparent);
+}
+
+.saas-hero-note strong {
+  font-weight: 500;
+  color: var(--hm-brand);
+}
+
+/* ── Page canvas ───────────────────────────────────────────────── */
+
+.saas-page {
+  background: var(--hm-white);
+}
+
+/* Section kicker — NexSaS “Feature / How It Work” labels */
+.saas-kicker,
+.saas-section-label {
+  display: block;
+  margin: 0 0 0.8rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--hm-ink) 45%, transparent);
+}
+
+/* Drawer */
+.saas-drawer {
+  box-shadow: var(--saas-shadow-md);
+}
+
+.saas-drawer-backdrop {
+  backdrop-filter: blur(3px);
+}
+
+/* ── NexSaS hero panel (below sticky bar) ──────────────────────── */
+
+.saas-hero {
+  padding: 0 clamp(1.2rem, 3vw, 2.4rem) 4.8rem;
+  background: var(--hm-white);
+}
+@media (min-width: 768px) {
+  .saas-hero {
+    padding: 0 clamp(2rem, 4vw, 4rem) 6rem;
+  }
+}
+
+.saas-hero::before {
+  display: none;
+}
+
+.saas-hero-card {
+  position: relative;
+  max-width: 132rem;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: clamp(2.8rem, 5vw, 6.4rem);
+  border: 1px solid color-mix(in srgb, var(--hm-ink) 6%, transparent);
+  background:
+    radial-gradient(
+      circle at 78% 28%,
+      color-mix(in srgb, var(--hm-primary) 12%, transparent),
+      transparent 34rem
+    ),
+    radial-gradient(
+      circle at 12% 80%,
+      color-mix(in srgb, var(--hm-brand) 6%, transparent),
+      transparent 28rem
+    ),
+    var(--saas-hero-panel);
+  padding: clamp(5.6rem, 8vw, 9.4rem) 2rem 0;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .saas-hero-card {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+.saas-hero-inner {
+  max-width: 74rem;
+  text-align: center;
+}
+
+.saas-hero-title {
+  max-width: 15ch;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(4.2rem, 7.4vw, 7.8rem);
+  text-wrap: balance;
+}
+
+.saas-hero-lead {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 66rem;
+  color: color-mix(in srgb, var(--hm-ink) 58%, transparent);
+}
+
+.saas-hero-actions {
+  justify-content: center;
+  gap: 1.4rem;
+  margin-top: 3.2rem;
+}
+
+.saas-hero-actions .saas-hero-cta {
+  min-width: 14rem;
+  gap: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.saas-hero-actions .btn-outline {
+  background: var(--hm-white);
+  border-color: color-mix(in srgb, var(--hm-ink) 18%, transparent);
+}
+.saas-hero-actions .btn-outline:hover {
+  background: var(--hm-cream);
+  border-color: var(--hm-ink);
+  color: var(--hm-primary);
+}
+.saas-hero-actions .btn-outline .hm-pixel-arrow {
+  color: var(--hm-ink);
+}
+.saas-hero-actions .btn-outline:hover .hm-pixel-arrow {
+  color: var(--hm-primary);
+}
+
+.saas-kicker {
+  color: color-mix(in srgb, var(--hm-ink) 44%, transparent);
+}
+
+.saas-hero-app {
+  position: relative;
+  display: grid;
+  grid-template-columns: 16rem minmax(0, 1fr);
+  gap: 0;
+  width: min(100%, 96rem);
+  min-height: 34rem;
+  margin: clamp(4rem, 6vw, 6.4rem) auto -2rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--hm-ink) 8%, transparent);
+  border-radius: 1.8rem 1.8rem 0 0;
+  background: var(--hm-white);
+  box-shadow: 0 18px 70px -32px rgb(29 24 19 / 0.22);
+  text-align: left;
+}
+@media (max-width: 720px) {
+  .saas-hero-app {
+    grid-template-columns: 1fr;
+    min-height: 25rem;
+  }
+  .saas-app-sidebar {
+    display: none;
+  }
+}
+
+.saas-app-sidebar {
+  padding: 2.2rem 2rem;
+  border-right: 1px solid var(--hm-line);
+  background: color-mix(in srgb, var(--hm-white) 86%, var(--saas-surface-2));
+}
+
+.saas-app-sidebar span:not(.saas-app-logo-dot) {
+  display: block;
+  height: 1.2rem;
+  width: 62%;
+  margin-top: 2rem;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--hm-ink) 12%, transparent);
+}
+.saas-app-sidebar span:nth-child(3) { width: 76%; }
+.saas-app-sidebar span:nth-child(4) { width: 54%; }
+.saas-app-sidebar span:nth-child(5) { width: 68%; }
+
+.saas-app-logo-dot {
+  display: inline-block;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--hm-primary);
+}
+
+.saas-app-main {
+  padding: clamp(2.4rem, 4vw, 4.4rem);
+}
+
+.saas-app-greeting {
+  margin: 0 0 0.6rem;
+  font-size: 1.25rem;
+  color: var(--hm-muted);
+}
+
+.saas-app-main h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 3.2vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  color: var(--hm-ink);
+}
+
+.saas-app-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  margin-top: 2.4rem;
+}
+@media (max-width: 560px) {
+  .saas-app-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.saas-app-cards span {
+  min-height: 7.4rem;
+  padding: 1.4rem;
+  border: 1px solid var(--hm-line);
+  border-radius: 1.4rem;
+  color: color-mix(in srgb, var(--hm-ink) 62%, transparent);
+  background: var(--hm-white);
+}
+
+.saas-app-prompt {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 2.4rem;
+  padding: 1.3rem 1.4rem;
+  min-height: 6.8rem;
+  border: 1px solid var(--hm-line);
+  border-radius: 1.8rem;
+  color: var(--hm-muted);
+  background: var(--hm-white);
+}
+
+.saas-app-prompt b {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--hm-ink);
+  color: white;
+  font-weight: 400;
+}
+
+.saas-logo-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+  max-width: 112rem;
+  margin: 4.4rem auto 0;
+  padding: 0 1rem;
+  color: color-mix(in srgb, var(--hm-ink) 25%, transparent);
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 4.4rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+}
+@media (max-width: 720px) {
+  .saas-logo-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    font-size: 2.6rem;
+  }
+}
+
+.saas-logo-strip span {
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Compact module strip below hero, styled as navigation cards */
+.saas-logo-strip {
+  max-width: 112rem;
+  margin-top: clamp(2.2rem, 4vw, 3.6rem);
+  padding: 0;
+  gap: 1rem;
+  color: var(--hm-ink);
+  font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.saas-logo-strip span {
+  display: flex;
+  min-height: 6.8rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--hm-ink) 8%, transparent);
+  border-radius: 1.8rem;
+  background: color-mix(in srgb, var(--hm-white) 82%, var(--hm-cream));
+  box-shadow: 0 18px 42px -36px rgb(29 24 19 / 0.3);
+}
+
+.saas-logo-strip span:first-child {
+  color: var(--hm-white);
+  background: linear-gradient(165deg, var(--hm-header-pill-top), var(--hm-brand));
+  border-color: color-mix(in srgb, var(--hm-ink) 18%, transparent);
+}
+
+@media (max-width: 720px) {
+  .saas-logo-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    font-size: 1.45rem;
+  }
+
+  .saas-logo-strip span {
+    min-height: 5.6rem;
+    border-radius: 1.4rem;
+  }
+}
+
+/* Keep the main hero clean; the workflow modules live in the studio board. */
+.saas-logo-strip {
+  display: none;
+}

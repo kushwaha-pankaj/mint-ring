@@ -1,0 +1,152 @@
+/* Gallery page: small additions on top of design-studio.css */
+
+.ds-page--gallery {
+  --ds-soft-bg: #fbfaf8;
+  background: var(--ds-soft-bg);
+}
+
+.ds-page--gallery .ds-sheet,
+.ds-page--gallery .studio-sheet {
+  max-width: none;
+  width: 100%;
+  overflow: visible;
+}
+
+.ds-page--gallery #gallery-studio {
+  padding-inline: clamp(1.6rem, 4vw, 4rem);
+  padding-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.ds-gallery-sheet-inner {
+  max-width: 148rem;
+  margin: 0 auto;
+}
+
+.ds-gallery-range {
+  color: var(--hm-primary, #00a478);
+  font-weight: 600;
+}
+
+.ds-gallery-date-group {
+  margin-bottom: 3.5rem;
+}
+
+.ds-gallery-date-group:last-of-type {
+  margin-bottom: 0;
+}
+
+.ds-gallery-date-head {
+  margin: 0 0 2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgb(0 0 0 / 0.1);
+}
+
+.ds-gallery-date-title {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-ds-serif, Georgia, serif);
+  font-size: clamp(1.65rem, 2.2vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: #151515;
+}
+
+.ds-gallery-date-meta {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: rgb(17 17 17 / 0.5);
+}
+
+.ds-gallery-date-group .ds-gallery-pack--sep {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+}
+
+.ds-gallery-pack--sep {
+  margin-top: 3.5rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgb(0 0 0 / 0.1);
+}
+
+.ds-gallery-mesh-viewer {
+  margin-top: 1rem;
+  border: 1px solid var(--hm-line, rgb(0 0 0 / 0.07));
+  background: var(--hm-cream, #f7f6f4);
+}
+
+.ds-gallery-mesh-viewer model-viewer {
+  width: 100%;
+  height: min(22rem, 50vh);
+}
+
+.ds-gallery-mesh-dl {
+  margin-top: 1rem;
+}
+
+.ds-gallery-state {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.ds-gallery-state-copy {
+  color: rgb(17 17 17 / 0.5);
+  letter-spacing: 0.04em;
+}
+
+.ds-gallery-empty {
+  max-width: 32rem;
+  padding: 2rem 0 3rem;
+}
+
+.ds-gallery-empty-copy {
+  margin: 0 0 1.5rem;
+  line-height: 1.55;
+  color: rgb(17 17 17 / 0.55);
+}
+
+.ds-gallery-tryons {
+  margin-top: 3rem;
+}
+
+.ds-gallery-tryon-thumb {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.ds-gallery-tryon-thumb img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/* Action row: support links styled like Design results buttons */
+a.ds-results-action {
+  text-decoration: none;
+  text-align: center;
+}
+
+a.ds-results-action--primary {
+  background: var(--hm-primary, #00a478);
+  color: #fff;
+  border-color: var(--hm-primary, #00a478);
+}
+
+a.ds-results-action--primary:hover {
+  background: #008f68;
+  border-color: #008f68;
+  color: #fff;
+}
+
+a.ds-forest-cta {
+  text-decoration: none;
+  color: #fff;
+}
+
+a.ds-forest-cta:hover {
+  color: #fff;
+}

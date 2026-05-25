@@ -1,0 +1,9 @@
+torch
+torchvision
+numpy
+pillow
+scikit-learn
+streamlit
+pandas
+opencv-python
+httpx>=0.27
